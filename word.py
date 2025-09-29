@@ -13,42 +13,61 @@ if "char" not in st.session_state:
     st.session_state.char = ""
 if "theme" not in st.session_state:
     st.session_state.theme = ""
-if "scores" not in st.session_state:  # 名前→スコアの辞書
+if "players" not in st.session_state:       # 登録済プレイヤー一覧
+    st.session_state.players = []
+if "scores" not in st.session_state:        # {名前: スコア}
     st.session_state.scores = {}
 
 st.title("🎯 ワードスナイパー")
 
 # ---------------------------
-# プレイヤー名入力
+# プレイヤー登録
 # ---------------------------
-player_name = st.text_input("プレイヤー名を入力してください（必須）")
+st.subheader("プレイヤー登録")
+new_player = st.text_input("新しいプレイヤー名")
+if st.button("追加"):
+    name = new_player.strip()
+    if name:
+        if name not in st.session_state.players:
+            st.session_state.players.append(name)
+            st.session_state.scores[name] = 0
+        else:
+            st.warning("その名前は既に登録されています")
 
+# ---------------------------
+# アクティブプレイヤー選択
+# ---------------------------
+if st.session_state.players:
+    active_player = st.selectbox("現在のプレイヤーを選択", st.session_state.players)
+else:
+    active_player = None
+    st.info("プレイヤーを追加してください")
+
+# ---------------------------
+# ゲーム操作
+# ---------------------------
 def draw_card():
     st.session_state.char = random.choice(HIRAGANA)
     st.session_state.theme = random.choice(THEMES)
 
-# ---------------------------
-# ボタン操作
-# ---------------------------
 col1, col2 = st.columns(2)
 with col1:
     if st.button("カードをめくる", use_container_width=True):
-        if player_name:
+        if active_player:
             draw_card()
         else:
-            st.warning("名前を入力してください")
+            st.warning("プレイヤーを選んでください")
 
-# 「ポイント加算」を押した回数だけ自動でスコア更新
 with col2:
     if st.button("ポイント加算", use_container_width=True):
-        if player_name:
-            # クリック1回ごとに +1
-            st.session_state.scores[player_name] = st.session_state.scores.get(player_name, 0) + 1
+        if active_player:
+            # ボタン1クリックごとに +1
+            st.session_state.scores[active_player] += 1
         else:
-            st.warning("名前を入力してください")
+            st.warning("プレイヤーを選んでください")
 
 # ---------------------------
-# 表示
+# カード表示
 # ---------------------------
 if st.session_state.char:
     st.markdown("---")
@@ -63,9 +82,9 @@ if st.session_state.char:
     st.markdown("---")
 
 # ---------------------------
-# スコア一覧
+# スコアボード
 # ---------------------------
 if st.session_state.scores:
-    st.subheader("📊 スコア（クリック回数）")
+    st.subheader("📊 スコア一覧（クリック回数）")
     for name, score in sorted(st.session_state.scores.items(), key=lambda x: x[1], reverse=True):
         st.write(f"**{name}** ： {score} 回")
