@@ -2,7 +2,20 @@ import streamlit as st
 import random
 
 st.set_page_config(page_title="ワードスナイパー", layout="centered")
-
+st.markdown(
+    """
+    <h1 style='
+        font-size:60px;      /* 文字サイズ(px) */
+        text-align:center;   /* 中央揃え */
+        color:#ff4b4b;       /* 文字色（赤系） */
+        font-family:"Comic Sans MS", cursive; /* フォント指定 */
+        margin-bottom:10px;  /* 下の余白 */
+    '>
+    🎯 ワードスナイパー
+    </h1>
+    """,
+    unsafe_allow_html=True
+)
 HIRAGANA = list("あいうえおかきくけこさしすせそたちつてとなにぬねのはひふへほまみむめもやゆよらりるれろわがぎぐげござじずぜぞだでどばびぶべぼぱぴぷぺぽ")
 THEMES   = ["果物", "動物", "食べ物", "国名", "乗り物","お菓子","都道府県","学校で使うもの","夏と言えば","春と言えば","冬と言えば","秋と言えば","職業","スポーツ","野菜","キャラクター","小学校の時に流行ったもの","高校時代に流行ったもの","チェーン店","理系用語","医療用語","物語","怖いもの","芸能人","歴史で習った言葉"]
 
