@@ -1,11 +1,10 @@
 import streamlit as st
 import random
 
-st.set_page_config(page_title="ワードスナイパー", layout="centered")
 st.markdown(
     """
     <h1 style='
-        font-size:60px;      /* 文字サイズ(px) */
+        font-size:30px;      /* 文字サイズ(px) */
         text-align:center;   /* 中央揃え */
         color:#ff4b4b;       /* 文字色（赤系） */
         font-family:"Comic Sans MS", cursive; /* フォント指定 */
