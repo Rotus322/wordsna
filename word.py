@@ -199,7 +199,7 @@ st.markdown(
         font-family:"Comic Sans MS", cursive; /* フォント指定 */
         margin-bottom:10px;  /* 下の余白 */
     '>
-    ※アルファベットの場合はその文字から始まる英単語かひらがなで〇行のどれでもよいとする
+    ※アルファベットの場合はその文字から始まる英単語かひらがなで〇行のどれでもよいとする<br>例：R→ラ行orR....
     </h1>
     """,
     unsafe_allow_html=True
