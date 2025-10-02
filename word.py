@@ -187,6 +187,23 @@ if "players" not in st.session_state:
 if "scores" not in st.session_state:
     st.session_state.scores = {}           # {名前: スコア}
 
+ st.warning("お題に対して出てきた文字で答えよう！")
+ 
+
+st.markdown(
+    """
+    <h1 style='
+        font-size:15px;      /* 文字サイズ(px) */
+        text-align:center;   /* 中央揃え */
+        color:#ff4b4b;       /* 文字色（赤系） */
+        font-family:"Comic Sans MS", cursive; /* フォント指定 */
+        margin-bottom:10px;  /* 下の余白 */
+    '>
+    ※アルファベットの場合はその文字から始まる英単語かひらがなで〇行のどれでもよいとする
+    </h1>
+    """,
+    unsafe_allow_html=True
+)
 
 # ---------------------------
 # プレイヤー登録
