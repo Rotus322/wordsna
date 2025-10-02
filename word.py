@@ -187,7 +187,7 @@ if "players" not in st.session_state:
 if "scores" not in st.session_state:
     st.session_state.scores = {}           # {名前: スコア}
 
- st.warning("お題に対して出てきた文字で答えよう！")
+ st.subheader("お題に対して出てきた文字で答えよう！")
  
 
 st.markdown(
