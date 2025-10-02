@@ -189,7 +189,7 @@ if "scores" not in st.session_state:
 
  
  
-
+st.subheader("お題に対して出てきた文字で答えよう！")
 st.markdown(
     """
     <h1 style='
